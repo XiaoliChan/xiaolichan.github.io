@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>XiaoliChan</title>
+<meta name="description" content="XiaoliChan — Windows & Active Directory attack tooling, C2 infrastructure, exploit development." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Crect x='6' y='8' width='20' height='3' fill='%23f5f5f4'/%3E%3Crect x='6' y='15' width='13' height='3' fill='%23a3a3a3'/%3E%3Crect x='6' y='22' width='7' height='3' fill='%23a3a3a3'/%3E%3C/svg%3E" />
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f5f5f4;
+    --muted: #a3a3a3;
+    --dim: #6b6b6b;
+    --line: #262626;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color-scheme: dark; }
+  body {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    padding: clamp(2rem, 8vh, 6rem) 1.5rem 4rem;
+  }
+  main { width: 100%; max-width: 44rem; }
+  h1 {
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .bio { color: var(--muted); margin-top: 0.6rem; font-size: 0.95rem; }
+  section { margin-top: 3.5rem; }
+  .prompt { color: var(--dim); user-select: none; }
+  .prompt b { color: var(--fg); font-weight: 500; }
+  .output { margin-top: 1rem; }
+  .focus p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; max-width: 38rem; }
+  .focus p + p { margin-top: 0.6rem; }
+  .tools { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  .tools td { border-bottom: 1px solid var(--line); padding: 0.8rem 0; vertical-align: baseline; }
+  .tools tr:last-child td { border-bottom: none; }
+  .tools .name a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .tools .name a:hover { border-color: var(--fg); }
+  .tools .stars { color: var(--dim); white-space: nowrap; text-align: right; padding-left: 1rem; font-variant-numeric: tabular-nums; }
+  .tools .desc { color: var(--muted); padding-left: 1rem; }
+  @media (max-width: 640px) {
+    .tools .desc { display: block; padding-left: 0; margin-top: 0.25rem; }
+    .tools .stars { padding-left: 0.75rem; }
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 2rem; font-size: 0.95rem; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+  .links a:hover { color: var(--fg); border-color: var(--fg); }
+  footer { margin-top: 5rem; color: var(--dim); font-size: 0.8rem; }
+  /* the one motion moment: the page types itself. reduced-motion: skip. */
+  .line { opacity: 0; }
+  .line.on { opacity: 1; }
+  .caret {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.1em;
+    background: var(--fg);
+    vertical-align: text-bottom;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .line { opacity: 1; }
+    .caret { display: none; }
+  }
+  a[href*="hatstack"]:hover { border-color: var(--fg) !important; }
+</style>
+</head>
+<body>
+<main>
+  <header style="display:flex;align-items:center;gap:1.4rem;">
+    <img src="https://github.com/XiaoliChan.png" alt="XiaoliChan" width="88" height="88"
+         style="border-radius:10px;border:1px solid var(--line);display:block;" />
+    <div>
+      <h1 style="font-size:clamp(2rem,6vw,3rem);">XiaoliChan</h1>
+    </div>
+  </header>
+  <header style="display:none">
+    <p class="bio">Loading error, code: 404. &middot; ::/0 &middot; writing code on GitHub since 2017</p>
+  </header>
+
+  <section class="focus">
+    <div class="prompt line">$ <b>latest</b></div>
+    <div class="output line">
+      <a href="https://xiaolichan.github.io/hatstack/"
+         style="display:block;border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.3rem;color:var(--fg);text-decoration:none;transition:border-color .15s;max-width:38rem;">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.25rem;">hatstack</span>
+        <span style="color:var(--dim);margin:0 .6rem;">—</span>
+        <span style="color:var(--muted);">search every Black Hat briefing, 1997&ndash;today:
+        titles, speakers, abstracts, official PDF links</span>
+        <span style="display:block;color:var(--dim);font-size:.8rem;margin-top:.5rem;">xiaolichan.github.io/hatstack</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="focus">
+    <div class="prompt line">$ <b>whoami</b></div>
+    <div class="output line">
+      <p>I build Windows &amp; Active Directory attack tooling, C2 infrastructure,
+      and exploit PoCs &mdash; mostly in Python and Go, some PowerShell.</p>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="prompt line">$ <b>certs</b></div>
+    <div class="output line links" style="gap:1.2rem 2.4rem;">
+      <span>OSCP+ <span style="color:var(--dim)">&middot; OffSec 2025</span></span>
+      <span>Alibaba Cloud Security <span style="color:var(--dim)">&middot; ACA 2026</span></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="prompt line">$ <b>ls ~/work</b> <span style="color:var(--dim)"># selected</span></div>
+    <div class="output line">
+      <table class="tools" aria-label="Selected projects">
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/wmiexec-Pro">wmiexec-Pro</a></td><td class="stars">1.3k</td><td class="desc">new generation of wmiexec.py</td></tr>
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/wmiexec-RegOut">wmiexec-RegOut</a></td><td class="stars">274</td><td class="desc">wmiexec output via registry, no SMB needed</td></tr>
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/RedCaddy">RedCaddy</a></td><td class="stars">208</td><td class="desc">C2 redirector based on Caddy</td></tr>
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/zerologon-Shot">zerologon-Shot</a></td><td class="stars">145</td><td class="desc">Zerologon with automatic DC password restore</td></tr>
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/available-ipv6-hosts">available-ipv6-hosts</a></td><td class="stars">117</td><td class="desc">IPv6 hosts</td></tr>
+        <tr><td class="name"><a href="https://github.com/XiaoliChan/LDAPShell">LDAPShell</a></td><td class="stars">62</td><td class="desc">ldap_shell.py wrapper for ntlmrelayx</td></tr>
+        <tr><td class="name"><a href="https://xiaolichan.github.io/hatstack/">hatstack</a></td><td class="stars">new</td><td class="desc">searchable index of every Black Hat briefing</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="prompt line">$ <b>contact</b></div>
+    <div class="output line links">
+      <a href="https://github.com/XiaoliChan">github.com/XiaoliChan</a>
+      <a href="https://x.com/Memory_before">x.com/Memory_before</a>
+    </div>
+  </section>
+
+  <footer class="line">No trackers, no cookies, one HTML file. View source is the whole site.</footer>
+  <div class="caret" aria-hidden="true"></div>
+</main>
+<script>
+  (function () {
+    var lines = document.querySelectorAll(".line");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var caret = document.querySelector(".caret");
+    var i = 0;
+    function next() {
+      if (i >= lines.length) { setTimeout(function () { caret.style.display = "none"; }, 2500); return; }
+      lines[i].classList.add("on");
+      i++;
+      setTimeout(next, 260 + Math.random() * 240);
+    }
+    next();
+  })();
+</script>
+</body>
+</html>
